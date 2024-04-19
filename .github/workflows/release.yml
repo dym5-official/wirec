@@ -1,0 +1,24 @@
+name: 🚀 Publish to NPM
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  publish:
+    name: 🚀 Publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+        name: 💦 Checkout code
+      - uses: actions/setup-node@v1
+        name: 🛑 Setup Node.js v18
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org/
+      - run: npm publish --access public
+        name: 🚀 Publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
