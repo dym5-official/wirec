@@ -6,7 +6,38 @@
 
 A plain JavaScript event broker designed for facilitating cross-component data exchange, such as updating one component's (React, Vue etc) state from another. It's versatile and can be utilized anywhere in your codebase.
 
-## Example
+## Installation
+
+```bash
+yarn add wirec
+```
+OR
+```bash
+npm i wirec
+```
+
+## Import
+
+```jsx
+import wirec from "wirec";
+```
+OR
+```jsx
+const wirec = require("wirec");
+```
+
+## Methods
+
+| Method     | Args          | Return          | Desc    |
+|------------|---------------|-----------------|---------|
+| wirec.on   | event_key: string<br /> callback: function | {<br />&nbsp;&nbsp;&nbsp;&nbsp;callback_id: string,<br />&nbsp;&nbsp;&nbsp;&nbsp;unlink: function<br />} | Add an event listner |
+| wirec.onx  | callback_id: string | void | Remove event listener |
+| wirec.ons  | event_key: string<br /> callback: function | {<br />&nbsp;&nbsp;&nbsp;&nbsp;callback_id: string,<br />&nbsp;&nbsp;&nbsp;&nbsp;unlink: function<br />} | Set an event listener that removes all other event listeners for the same event and sets the current one. |
+| wirec.put    | event_key: string<br /> ...args: any | void | Dispatch an event |
+| wirec.hook | event_key: string | (...args) => void | Directly hooking listener to an event |
+
+
+## Examples
 
 ```jsx
 // Fruits.jsx
@@ -57,3 +88,16 @@ export default function Another() {
 }
 
 ```
+
+### Directly hooking listener to a DOM event
+
+```jsx
+wirec.on("signup", (e) => {
+    // ...
+});
+
+<form onSubmit={wirec.hook("signup")}>
+    ...
+</form>
+```
+
