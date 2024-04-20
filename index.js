@@ -61,11 +61,18 @@ const put = (event_key, ...args) => {
     }
 }
 
+const hook = (key) => {
+    return (...all) => {
+        put.apply(null, [key, ...all]);
+    }
+}
+
 const wirec = {
     on,
     onx,
     ons,
     put,
+    hook,
 };
 
 module.exports = wirec;

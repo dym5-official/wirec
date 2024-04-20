@@ -8,6 +8,7 @@ type Wirec = {
     onx(event_key: string, callback_id: string): void;
     ons(event_key: string, callback: (...args: any[]) => void): Connection;
     put(event_key: string, ...args: any[]): void;
+    hook(event_key: string): (...args) => void;
 }
 
 declare const wirec: Wirec;
