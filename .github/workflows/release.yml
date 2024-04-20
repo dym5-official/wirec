@@ -18,6 +18,10 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
+      - name: 🔪 Remove unnecessary files
+        run: |
+          rm -rf .github
+          rm LICENSE
       - run: npm publish --access public
         name: 🚀 Publish
         env:
