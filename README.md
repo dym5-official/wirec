@@ -101,3 +101,37 @@ wirec.on("signup", (e) => {
 </form>
 ```
 
+### Directly accessing a state
+
+```jsx
+// Component1.jsx
+
+import { useState } from "react";
+import wirec from "wirec";
+
+export default function Component1() {
+    const [count, setCount] = wirec.state.init("count", useState, 0);
+
+    return (
+        <button onClick={() => setCount(count + 1)}>Count: {count}</button>
+    )
+}
+```
+
+```jsx
+// Component2.jsx
+
+import wirec from "wirec";
+
+export default function Component2() {
+    const count = wirec.state.get("count");
+
+    return (
+        <div>
+            Another:
+            <button onClick={() => wirec.state.set("count", count + 1)}>Count++</button>
+            <button onClick={() => wirec.state.set("count", Math.random())}>Random</button>
+        </div>
+    )
+}
+```

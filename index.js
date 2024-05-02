@@ -1,5 +1,6 @@
 const connections = {};
 const callbacks = {};
+const states = {};
 
 let id = 0;
 
@@ -67,12 +68,30 @@ const hook = (key) => {
     }
 }
 
+const initState = (name, useState, initialValue) => {
+    states[name] = useState(initialValue);
+    return states[name];
+}
+
+const setState = (name, value) => {
+    states[name][1].call(null, value);
+}
+
+const getState = (name) => {
+    return states[name][0];
+}
+
 const wirec = {
     on,
     onx,
     ons,
     put,
     hook,
+    state: {
+        init: initState,
+        set: setState,
+        get: getState,
+    }
 };
 
 module.exports = wirec;
