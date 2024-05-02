@@ -34,7 +34,7 @@ const wirec = require("wirec");
 | wirec.onx  | callback_id: string | void | Remove event listener |
 | wirec.ons  | event_key: string<br /> callback: function | {<br />&nbsp;&nbsp;&nbsp;&nbsp;callback_id: string,<br />&nbsp;&nbsp;&nbsp;&nbsp;unlink: function<br />} | Set an event listener that removes all other event listeners for the same event and sets the current one. |
 | wirec.put    | event_key: string<br /> ...args: any | void | Dispatch an event |
-| wirec.hook | event_key: string | (...args) => void | Directly hooking listener to an event |
+| wirec.hook | event_key: string | (...args) => void | Directly hooking listener to a DOM event |
 
 
 ## Examples
