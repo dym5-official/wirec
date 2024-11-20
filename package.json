@@ -1,7 +1,7 @@
 {
   "name": "wirec",
   "description": "A plain JavaScript event broker designed for facilitating cross-component data exchange.",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "main": "index.js",
   "author": "DYM5 Official",
   "license": "MIT",
