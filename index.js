@@ -81,12 +81,27 @@ const getState = (name) => {
     return states[name][0];
 }
 
+const collect = (event_key, ...args) => {
+    const collection = [];
+
+    if (Array.isArray(connections[event_key])) {
+        const callback_ids = connections[event_key];
+
+        callback_ids.forEach((callback_id) => {
+            collection.push(callbacks[callback_id].apply(null, args));
+        });
+    }
+
+    return collection;
+}
+
 const wirec = {
     on,
     onx,
     ons,
     put,
     hook,
+    collect,
     state: {
         init: initState,
         set: setState,

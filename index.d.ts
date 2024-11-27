@@ -12,6 +12,7 @@ declare module "wirec" {
         ons(event_key: string, callback: Callback): Connection;
         put(event_key: string, ...args: any[]): void;
         hook(key: string): (...args: any[]) => void;
+        collect(event_key: string, ...args: any[]): any[];
 
         state: {
             init<T>(name: string, useState: (initialValue: T) => [T, (value: T) => void], initialValue: T): [T, (value: T) => void];
